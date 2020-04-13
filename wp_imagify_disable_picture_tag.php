@@ -28,34 +28,37 @@ defined( 'ABSPATH' ) or die( 'Nope, not accessing this' );
 
 class wp_imagify_disable_picture_tag{
 
-
+     /**
+     * Construct function
+     *
+     * @since  1.0
+     * @author Anand Agarwal
+     *
+     * 
+     */
     public function __construct(){
 
         add_filter('imagify_allow_picture_tags_for_webp', array($this,'imagify_disable_picture_anand'));
-        register_activation_hook(__FILE__, array($this,'plugin_activate')); //activate hook
+        
 
     }
 
     
     /**
-     * Do not use <picture> tags in AMP pages.
+     * Do not use <picture> tags.
      *
-     * @since  1.9
-     * @author Grégory Viguier
+     * @since  1.0
+     * @author Anand Agarwal
      *
-     * @param  bool $allow True to allow the use of <picture> tags (default). False to prevent their use.
-     * @return bool
      */
     public function imagify_disable_picture_anand( $allow ) {
           $allow = '';
           return $allow;
        
-    };
+    }
+
+
 
 }
 
-//triggered on activation of the plugin (called only once)
-public function plugin_activate(){  
-    $this->imagify_disable_picture_anand();
-    
-}
+new wp_imagify_disable_picture_tag;
